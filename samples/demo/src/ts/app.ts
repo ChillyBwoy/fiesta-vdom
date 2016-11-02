@@ -6,6 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const vdom = createVDOM($root, tplTodos);
 
   vdom.update({
-
+    hello: 'OH, HAI!',
+    previewEach: {
+      foo: 'bar',
+      key: 'value'
+    },
+    previewFor: [
+      'xml',
+      'json',
+      'yaml',
+      'bson'
+    ],
+    previewIf: true
   });
 });

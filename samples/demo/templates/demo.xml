@@ -1,6 +1,48 @@
 <?xml version="1.0"?>
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
   <div>
-    
+    <style>
+      .preview {
+        background: #EEE;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #CCC;
+      }
+    </style>
+    <h1>Demo</h1>
+
+    <h2>fest:value</h2>
+    <div class="preview">
+      <fest:value>json.hello</fest:value>
+    </div>
+
+    <h2>fest:each</h2>
+    <div class="preview">
+      <ul>
+      <fest:each iterate="json.previewEach" index="key" value="value">
+        <li>
+          <fest:value>key</fest:value> = <fest:value>value</fest:value>
+        </li>
+      </fest:each>
+      </ul>
+    </div>
+
+    <h2>fest:for</h2>
+    <div class="preview">
+      <ul>
+      <fest:each iterate="json.previewFor" index="i" value="value">
+        <li>
+          <fest:value>value</fest:value>
+        </li>
+      </fest:each>
+      </ul>
+    </div>
+
+    <h2>fest:if</h2>
+    <div class="preview">
+      <fest:if test="json.previewIf">
+        true
+      </fest:if>
+    </div>
   </div>
 </fest:template>
