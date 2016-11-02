@@ -10,12 +10,10 @@
   </fest:set>
 
   <div>
-    <fest:get name="test-template"></fest>
-
     <style>
       .preview {
         background: #EEE;
-        padding: 20px;
+        padding: 10px;
         box-sizing: border-box;
         border: 1px solid #CCC;
       }
@@ -54,6 +52,24 @@
       <fest:if test="json.previewIf">
         true
       </fest:if>
+    </div>
+
+    <h2>fest:set / fest:get</h2>
+    <div class="preview">
+        <fest:get name="test-template">
+          <fest:params>
+            {
+              id: 5,
+              text: 'test'
+            }
+          </fest:params>
+        </fest>
+        <fest:get name="test-template">
+          {
+            id: 42,
+            text: 'lol'
+          }
+        </fest>
     </div>
   </div>
 </fest:template>
