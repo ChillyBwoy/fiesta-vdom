@@ -4,11 +4,13 @@
   "description": "sample",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --colors --progress --watch"
+    "start": "./node_modules/.bin/webpack-dev-server --colors --progress --watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ts-loader": "^1.0.0"
+    "ts-loader": "^1.0.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }

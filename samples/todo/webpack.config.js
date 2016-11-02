@@ -23,7 +23,8 @@ const config = {
         test: /\.ts?$/,
         loader: 'ts-loader',
         include: [
-          path.resolve(__dirname, 'src/ts')
+          path.resolve(__dirname, 'src/ts'),
+          path.resolve(__dirname, '../../../lib')
         ]
       }
     ]

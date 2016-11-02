@@ -1,20 +1,17 @@
 import { setAttrs, updateAttrs, ASTNodeAttrs } from './attrs';
 
-export type FiestaElement = HTMLElement | DocumentFragment | Text;
-
 export interface IASTNode {
   type: string;
   attrs: ASTNodeAttrs;
   children: ASTNode[]
 }
-
 export type ASTNode = IASTNode & string;
 
 function flat (xs: any[]): any[] {
   return Array.prototype.concat.apply([], xs);
 } 
 
-export function transform (type, attrs, children): IASTNode {
+export function getNode (type, attrs, children): IASTNode {
   return {
     type,
     attrs,
@@ -22,8 +19,7 @@ export function transform (type, attrs, children): IASTNode {
   };
 }
 
-
-function createChildren (children: ASTNode[]): FiestaElement {
+function createChildren (children: ASTNode[]) {
   let $fragment = document.createDocumentFragment();
 
   children.forEach((item) => {
@@ -32,11 +28,10 @@ function createChildren (children: ASTNode[]): FiestaElement {
       $fragment.appendChild($el);
     }
   });
-
   return $fragment;
 }
 
-function createElement (ast: ASTNode): FiestaElement {
+function createElement (ast: ASTNode) {
   if (typeof ast === 'string') {
     return document.createTextNode(ast);
   } else if (Array.isArray(ast)) {
@@ -83,7 +78,7 @@ function resolveNodes (node1?: ASTNode, node2?: ASTNode) {
   }
 }
 
-function updateElement ($parent: HTMLElement, newNode?: ASTNode, oldNode?: ASTNode, index: number = 0) {
+function updateElement ($parent, newNode?: ASTNode, oldNode?: ASTNode, index: number = 0) {
   const { node1, node2 } = resolveNodes(newNode, oldNode);
   if (!node2) {
     $parent.appendChild(
@@ -120,18 +115,20 @@ function updateElement ($parent: HTMLElement, newNode?: ASTNode, oldNode?: ASTNo
   }
 }
 
-export function createVDOM ($parent: HTMLElement, ast) {
-  const tree = ast(transform);
+export function createVDOM ($parent, ast) {
+  const template = ast(getNode);
   let curr = null;
 
-  return function (data) {
-    if (curr === null) {
-      curr = tree(data);
-      updateElement($parent, curr);
-    } else {
-      let next = tree(data);
-      updateElement($parent, next, curr);
-      curr = next;
+  return {
+    update(data: any) {
+      if (curr === null) {
+        curr = template(data);
+        updateElement($parent, curr);
+      } else {
+        let next = template(data);
+        updateElement($parent, next, curr);
+        curr = next;
+      }
     }
   };
 }

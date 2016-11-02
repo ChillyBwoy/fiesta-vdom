@@ -1,0 +1,21 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "pretty": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true
+  },
+  "files": [
+    "./src/ts/app.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
