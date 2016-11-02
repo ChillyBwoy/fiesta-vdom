@@ -1,6 +1,17 @@
 <?xml version="1.0"?>
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+  <fest:set name="test-template">
+    <div data-id="{params.id}">
+      <h3>
+        <fest:value>params.text</fest:value>
+      </h3>
+    </div>
+  </fest:set>
+
   <div>
+    <fest:get name="test-template"></fest>
+
     <style>
       .preview {
         background: #EEE;
