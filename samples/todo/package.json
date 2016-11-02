@@ -1,0 +1,14 @@
+{
+  "name": "fiesta-vdom-todo",
+  "version": "1.0.0",
+  "description": "sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --colors --progress --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^1.0.0"
+  }
+}
