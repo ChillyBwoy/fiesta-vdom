@@ -1,0 +1,18 @@
+{
+  "name": "fiesta-vdom-todo",
+  "version": "1.0.0",
+  "description": "sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --colors --progress --watch",
+    "template": "./node_modules/.bin/fiesta templates/demo.xml -f | ./node_modules/.bin/js-beautify -s=2 -n > src/templates/demo.js"
+  },
+  "author": "Eugene Cheltsov <e.cheltsov@corp.mail.ru>",
+  "license": "ISC",
+  "devDependencies": {
+    "js-beautify": "^1.6.4",
+    "ts-loader": "^1.0.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
