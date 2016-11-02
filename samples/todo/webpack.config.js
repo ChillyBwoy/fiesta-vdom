@@ -24,7 +24,7 @@ const config = {
         loader: 'ts-loader',
         include: [
           path.resolve(__dirname, 'src/ts'),
-          path.resolve(__dirname, '../../../lib')
+          path.resolve(__dirname, '../../../dist')
         ]
       }
     ]

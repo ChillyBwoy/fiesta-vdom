@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --colors --progress --watch"
   },
-  "author": "",
+  "author": "Eugene Cheltsov <e.cheltsov@corp.mail.ru>",
   "license": "ISC",
   "devDependencies": {
     "ts-loader": "^1.0.0",
