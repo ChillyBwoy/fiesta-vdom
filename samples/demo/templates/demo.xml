@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-
   <fest:set name="test-template">
     <div data-id="{params.id}">
       <h3>
@@ -56,20 +55,20 @@
 
     <h2>fest:set / fest:get</h2>
     <div class="preview">
-        <fest:get name="test-template">
-          <fest:params>
-            {
-              id: 5,
-              text: 'test'
-            }
-          </fest:params>
-        </fest>
-        <fest:get name="test-template">
+      <fest:get name="test-template">
+        <fest:params>
           {
-            id: 42,
-            text: 'lol'
+            id: 5,
+            text: 'test'
           }
-        </fest>
+        </fest:params>
+      </fest>
+      <fest:get name="test-template">
+        {
+          id: 42,
+          text: 'lol'
+        }
+      </fest>
     </div>
   </div>
 </fest:template>
