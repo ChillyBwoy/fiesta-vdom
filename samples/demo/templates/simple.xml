@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+  <fest:set name="custom-component">
+    <div data-id="{params.id}">
+      <h3>Custom component</h3>
+    </div>
+  </fest:set>
+
+  <h1>Plain text</h1>
+  <fest:value>json.title</fest:value>
+
+  <fest:each iterate="json.previewEach" index="key" value="value">
+    <p>
+      <fest:value>key</fest:value> = <fest:value>value</fest:value>
+    </p>
+  </fest:each>
+
+  <fest:if test="json.previewIf">
+    true
+  </fest:if>
+
+  <fest:get name="custom-component">
+    <fest:params>
+      {
+        id: 5
+      }
+    </fest:params>
+  </fest>
+</fest:template>

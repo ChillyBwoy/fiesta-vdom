@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --colors --progress --watch",
-    "template": "./node_modules/.bin/fiesta templates/demo.xml -f | ./node_modules/.bin/js-beautify -s=2 -n > src/templates/demo.js",
-    "ast": "./node_modules/.bin/fiesta templates/demo.xml | ./node_modules/.bin/js-beautify -s=2 -n > src/templates/demo.ast.js"
+    "template": "./node_modules/.bin/fiesta templates/demo.xml | ./node_modules/.bin/js-beautify -s=2 -n > src/templates/demo.js",
+    "ast": "./node_modules/.bin/fiesta templates/demo.xml -ast | ./node_modules/.bin/js-beautify -s=2 -n > src/templates/demo.ast.json"
   },
   "author": "Eugene Cheltsov <e.cheltsov@corp.mail.ru>",
   "license": "ISC",

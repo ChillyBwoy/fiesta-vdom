@@ -1,4 +1,4 @@
-module.exports = {
+{
   "type": "fest:template",
   "attrs": {
     "xmlns:fest": "http://fest.mail.ru",
@@ -37,7 +37,7 @@ module.exports = {
       "children": [{
         "type": "#text",
         "attrs": {},
-        "children": [".preview {        background: #EEE;        padding: 10px;        box-sizing: border-box;        border: 1px solid #CCC;      }    "]
+        "children": [".preview {background: #EEE;padding: 10px;box-sizing: border-box;border: 1px solid #CCC;}"]
       }]
     }, {
       "type": "h1",
@@ -106,7 +106,7 @@ module.exports = {
             }, {
               "type": "#text",
               "attrs": {},
-              "children": ["= "]
+              "children": ["="]
             }, {
               "type": "fest:value",
               "attrs": {},
@@ -178,7 +178,7 @@ module.exports = {
         "children": [{
           "type": "#text",
           "attrs": {},
-          "children": ["true      "]
+          "children": ["true"]
         }]
       }]
     }, {
@@ -205,7 +205,7 @@ module.exports = {
           "children": [{
             "type": "#text",
             "attrs": {},
-            "children": ["{            id: 5,            text: 'test'          }        "]
+            "children": ["{id: 5,text: 'test'}"]
           }]
         }]
       }, {
@@ -216,7 +216,7 @@ module.exports = {
         "children": [{
           "type": "#text",
           "attrs": {},
-          "children": ["{          id: 42,          text: 'lol'        }      "]
+          "children": ["{id: 42,text: 'lol'}"]
         }]
       }]
     }]
