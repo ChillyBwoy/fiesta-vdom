@@ -3,7 +3,7 @@ import { setAttrs, updateAttrs, ASTNodeAttrs } from './attrs';
 export interface IASTNode {
   type: string;
   attrs: ASTNodeAttrs;
-  children: ASTNode[]
+  children: string | ASTNode[]
 }
 export type ASTNode = IASTNode & string;
 
@@ -12,10 +12,11 @@ function flat (xs: any[]): any[] {
 } 
 
 export function getNode (type, attrs, children): IASTNode {
+  const nextChildren = Array.isArray(children) ? flat(children) : children;
   return {
     type,
     attrs,
-    children: flat(children)
+    children: nextChildren
   };
 }
 
@@ -31,20 +32,22 @@ function createChildren (children: ASTNode[]) {
   return $fragment;
 }
 
-function createElement (ast: ASTNode) {
+function createElement (ast) {
   if (typeof ast === 'string') {
     return document.createTextNode(ast);
-  } else if (Array.isArray(ast)) {
-    return createChildren(ast);
-  } else {
-    const { type, attrs, children } = ast;
-    const $el = setAttrs(document.createElement(type), attrs);
-
-    if (children.length > 0) {
-      $el.appendChild(createChildren(children));
-    }
-    return $el;
   }
+
+  const { type, attrs, children } = ast;
+
+  if (type === '#fragment') {
+    return createChildren(children);
+  }
+  const $el = setAttrs(document.createElement(type), attrs);
+
+  if (children.length > 0) {
+    $el.appendChild(createChildren(children));
+  }
+  return $el;
 }
 
 function changed (node1: ASTNode, node2: ASTNode): boolean {
@@ -102,6 +105,7 @@ function updateElement ($parent, newNode?: ASTNode, oldNode?: ASTNode, index: nu
     }
   } else {
     updateAttrs($parent.childNodes[index], node1.attrs, node2.attrs);
+
     const newLength = node1.children.length;
     const oldLength = node2.children.length;
     for (let i = 0; i < newLength || i < oldLength; i++) {
@@ -115,17 +119,55 @@ function updateElement ($parent, newNode?: ASTNode, oldNode?: ASTNode, index: nu
   }
 }
 
+function normalize(ast) {
+  if (typeof ast === 'string') {
+    return ast;
+  }
+  const { type, children } = ast;
+
+  switch (type) {
+    case '#text':
+      return children;
+
+    case '#cdata':
+      return null;
+    
+    case '#comment':
+      return null;
+
+    case '#fragment':
+      return Object.assign(ast, {
+        children: children.map(normalize).filter(x => x !== null)
+      });
+
+    default:
+      return Object.assign(ast, {
+        children: children.map(normalize).filter(x => x !== null)
+      });
+  }
+}
+
 export function createVDOM ($parent, ast) {
+  const rootName = $parent.tagName.toLowerCase(); 
   const template = ast(getNode);
-  let curr = null;
+  let curr: ASTNode | undefined;
+
+  function tree(data: any) {
+    let t = template(data);
+    if (t.type === '#root') {
+      t.type = rootName;
+    }
+    const r = normalize(t);
+    return r;
+  }
 
   return {
     update(data: any) {
-      if (curr === null) {
-        curr = template(data);
+      if (!curr) {
+        curr = tree(data);
         updateElement($parent, curr);
       } else {
-        let next = template(data);
+        let next = tree(data);
         updateElement($parent, next, curr);
         curr = next;
       }

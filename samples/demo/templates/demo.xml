@@ -2,13 +2,13 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
   <fest:set name="test-template">
     <div data-id="{params.id}">
-      <h3>
+      <h3 data-title="Id of this block is {params.id}">
         <fest:value>params.text</fest:value>
       </h3>
     </div>
   </fest:set>
-
-  <div>
+  <!--this is comment-->
+  <div class="application" data-role="main" data-id="root">
     <style>
       .preview {
         background: #EEE;
@@ -62,13 +62,22 @@
             text: 'test'
           }
         </fest:params>
-      </fest>
+      </fest:get>
       <fest:get name="test-template">
         {
           id: 42,
           text: 'lol'
         }
-      </fest>
+      </fest:get>
     </div>
+
+    <![CDATA[this is cdata]]>
+
+    <h2>fest:space</h2>
+
+    <div class="preview">
+      Hello,<fest:space/>world!
+    </div>
+    <!--this is another one-->
   </div>
 </fest:template>

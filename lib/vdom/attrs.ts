@@ -4,18 +4,26 @@ export interface ASTNodeAttrs {
 }
 
 function setAttr ($el, name: string, value) {
-  $el.setAttribute(name, value);
+  if (name === 'value') {
+    $el.value = value;
+  } else {
+    $el.setAttribute(name, value);
+  }
   return $el;
 }
 
-function removeAttr ($el, name: string) {
-  $el.removeAttribute(name);
+function removeAttr ($el, name: string, value) {
+  if (typeof value === 'string') {
+    setAttr($el, name, '');
+  } else {
+    $el.removeAttribute(name);
+  }
   return $el;
 }
 
 function updateAttr ($el, name: string, newVal?: ASTNodeAttrVal, oldVal?: ASTNodeAttrVal) {
   if (!newVal) {
-    removeAttr($el, name);
+    removeAttr($el, name, newVal);
   } else if (!oldVal || newVal !== oldVal) {
     setAttr($el, name, newVal);
   }
@@ -30,7 +38,7 @@ export function setAttrs ($el, attrs: ASTNodeAttrs) {
 }
 
 export function updateAttrs ($el, newAttrs: ASTNodeAttrs, oldAttrs: ASTNodeAttrs = {}) {
-  const attrs = Object.assign({}, newAttrs, oldAttrs);
+  const attrs = Object.assign({}, oldAttrs, newAttrs);
   Object.keys(attrs).forEach(name => {
     updateAttr($el, name, newAttrs[name], oldAttrs[name]);
   });

@@ -1,53 +1,59 @@
-module.exports = function(f$bc23d178) {
-
+module.exports = function(f$9258ccab) {
   // --- fest prolog ---
-  var v$bc23d178$templates = {
+  var v$9258ccab$templates = {
     "test-template": function(params) {
-      return [f$bc23d178('#fragment', {}, [f$bc23d178('div', {
+      return [f$9258ccab('#fragment', {}, [f$9258ccab('div', {
         "data-id": ("" + (params.id))
-      }, [f$bc23d178('h3', {}, [('' + params.text)])])])];
+      }, [f$9258ccab('h3', {
+        "data-title": "Id of this block is " + ("" + (params.id))
+      }, [('' + params.text)])])])];
     }
   };
   // --- end of fest prolog ---
 
-
   return function(json) {
-    return f$bc23d178('#fragment', {}, [f$bc23d178('div', {}, [f$bc23d178('style', {}, [f$bc23d178('#text', {}, ['.preview {background: #EEE;padding: 10px;box-sizing: border-box;border: 1px solid #CCC;}'])]), f$bc23d178('h1', {}, [f$bc23d178('#text', {}, ['Demo'])]), f$bc23d178('h2', {}, [f$bc23d178('#text', {}, ['fest:value'])]), f$bc23d178('div', {
+    return f$9258ccab('#root', {}, [f$9258ccab('#comment', {}, 'this is comment'), f$9258ccab('div', {
+      "class": "application",
+      "data-role": "main",
+      "data-id": "root"
+    }, [f$9258ccab('style', {}, [f$9258ccab('#text', {}, '.preview {background: #EEE;padding: 10px;box-sizing: border-box;border: 1px solid #CCC;}')]), f$9258ccab('h1', {}, [f$9258ccab('#text', {}, 'Demo')]), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:value')]), f$9258ccab('div', {
       "class": "preview"
-    }, [('' + json.hello)]), f$bc23d178('h2', {}, [f$bc23d178('#text', {}, ['fest:each'])]), f$bc23d178('div', {
+    }, [('' + json.hello)]), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:each')]), f$9258ccab('div', {
       "class": "preview"
-    }, [f$bc23d178('ul', {}, [(function() {
-      var v$bc23d178$1 = [],
+    }, [f$9258ccab('ul', {}, [(function() {
+      var v$9258ccab$1 = [],
         key, value;
       for (key in json.previewEach) {
         if (json.previewEach.hasOwnProperty(key)) {
           value = json.previewEach[key];
-          v$bc23d178$1.push([f$bc23d178('li', {}, [('' + key), f$bc23d178('#text', {}, ['=']), ('' + value)])]);
+          v$9258ccab$1.push(f$9258ccab('li', {}, [('' + key), f$9258ccab('#text', {}, '='), ('' + value)]));
         }
       }
-      return v$bc23d178$1;
-    }())])]), f$bc23d178('h2', {}, [f$bc23d178('#text', {}, ['fest:for'])]), f$bc23d178('div', {
+      return v$9258ccab$1;
+    }())])]), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:for')]), f$9258ccab('div', {
       "class": "preview"
-    }, [f$bc23d178('ul', {}, [(function() {
-      var v$bc23d178$2 = [],
+    }, [f$9258ccab('ul', {}, [(function() {
+      var v$9258ccab$2 = [],
         i, value;
       for (i in json.previewFor) {
         if (json.previewFor.hasOwnProperty(i)) {
           value = json.previewFor[i];
-          v$bc23d178$2.push([f$bc23d178('li', {}, [('' + value)])]);
+          v$9258ccab$2.push(f$9258ccab('li', {}, [('' + value)]));
         }
       }
-      return v$bc23d178$2;
-    }())])]), f$bc23d178('h2', {}, [f$bc23d178('#text', {}, ['fest:if'])]), f$bc23d178('div', {
+      return v$9258ccab$2;
+    }())])]), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:if')]), f$9258ccab('div', {
       "class": "preview"
     }, [(function() {
-      var v$bc23d178$3 = [];
+      var v$9258ccab$3 = [];
       if (json.previewIf) {
-        v$bc23d178$3.push(f$bc23d178('#text', {}, ['true']));
+        v$9258ccab$3.push(f$9258ccab('#text', {}, 'true'));
       };
-      return v$bc23d178$3;
-    }())]), f$bc23d178('h2', {}, [f$bc23d178('#text', {}, ['fest:set / fest:get'])]), f$bc23d178('div', {
+      return v$9258ccab$3;
+    }())]), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:set / fest:get')]), f$9258ccab('div', {
       "class": "preview"
-    }, [v$bc23d178$templates['test-template']({}), v$bc23d178$templates['test-template']({})])])]);
+    }, [v$9258ccab$templates['test-template']({}), v$9258ccab$templates['test-template']({})]), f$9258ccab('#cdata', {}, 'this is cdata]]>'), f$9258ccab('h2', {}, [f$9258ccab('#text', {}, 'fest:space')]), f$9258ccab('div', {
+      "class": "preview"
+    }, [f$9258ccab('#text', {}, 'Hello,'), ' ', f$9258ccab('#text', {}, 'world!')]), f$9258ccab('#comment', {}, 'this is another one')])]);
   };;
 };
